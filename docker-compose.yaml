@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  opensim:
+    build: .
+    image: opensim-core:22.04
+    container_name: opensim_container
+    # Mount the current directory to /app so you can run your scripts
+    volumes:
+      - .:/app
+    working_dir: /app
+    # Keep the container running so you can exec into it, 
+    # or override this command to run a specific script.
+    command: tail -f /dev/null
+    environment:
+      - PYTHONUNBUFFERED=1
