@@ -36,6 +36,14 @@ WORKDIR /root/repos
 RUN git clone https://github.com/opensim-org/opensim-core
 # RUN git clone https://github.com/MIT-Motor-Control/mocap-tools.git
 
+# Before the OpenSim build step, install the JDK
+RUN apt-get update && apt-get install -y \
+    openjdk-11-jdk \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME so CMake can find the JNI headers automatically
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
 # Install OpenSim and Python bindings
 RUN opensim-core/scripts/build/opensim-core-linux-build-script.sh
 
