@@ -45,7 +45,7 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
 # Install OpenSim and Python bindings
-RUN opensim-core/scripts/build/opensim-core-linux-build-script.sh -j 2
+RUN opensim-core/scripts/build/opensim-core-linux-build-script.sh -j 1
 
 WORKDIR /root/opensim-core/sdk/Python/
 RUN python3 -m pip install .
